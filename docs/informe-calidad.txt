@@ -1,0 +1,70 @@
+POLI SOCIAL NETWORK
+Informe de implementación y pruebas · 19 de noviembre de 2026
+
+Alcance
+Se comprobó la aplicación universitaria en desarrollo local con Next.js, Express y MongoDB. La página de entrada es http://localhost:3000. El servicio de la aplicación escucha en http://localhost:3001/api. En la raíz, usuarios_prueba.txt contiene las cuentas sociales. credenciales_admin_y_reporte.txt reúne los accesos del personal y una copia de este informe.
+
+CÓMO RECORRER LA DEMOSTRACIÓN
+
+• Estudiante y docente. Abre Páginas, crea una página y elígela en el selector de identidad de la barra superior. El selector permite volver al perfil personal. La página tiene su propio muro de autor y puede publicar y comentar. Su titular conserva el acceso con su contraseña personal.
+• Página con acceso directo. Entra como bienestar. Abre sus publicaciones, despliega los comentarios y usa el menú de tres puntos para editar o retirar una publicación propia. Bienestar Universitario y Semillero CodePoli están vinculados a cuentas institucionales. Laura Gómez puede gestionar su anuncio de la calculadora. Los nombres y los identificadores de los comentarios provienen de MongoDB.
+• Moderador. Recorre Inicio y Foros en modo de lectura, abre los tres puntos de una publicación para ocultarla o suspender al autor personal durante treinta días. La bandeja de reportes permite tomar un caso, resolverlo o descartarlo. En Páginas puedes dar de alta una cuenta institucional con acceso directo.
+• Administrador. El muro, los foros y las acciones contextuales comparten la interfaz de moderación. Las secciones adicionales permiten consultar el resumen, administrar usuarios y permisos, restablecer contraseñas, gestionar verificación, mantener carreras y listas y consultar auditoría. El fundador administra otras cuentas administradoras. La plataforma protege la propia cuenta frente a la inhabilitación y al cambio de su propio rol.
+• Verificación. Administración puede marcar «Verificar página al crearla». Las páginas empiezan sin insignia si no se selecciona esa opción. El titular solicita la verificación desde Páginas y todos los administradores activos reciben un aviso. Administración concede o retira la marca verde desde Páginas o desde el menú de una publicación de la página.
+• Perfil. Los perfiles sociales permiten actualizar datos. Los titulares con acceso propio pueden cambiar la contraseña. La página delegada utiliza la contraseña del titular. El personal dispone de recuperación obligatoria tras un restablecimiento administrativo y carece del formulario social de cambios personales.
+• Muro. Admite texto, fotos, video y PDF, además de encuestas de dos a seis opciones, preguntas con respuesta aceptada, debates y eventos con fecha futura y lugar. Se pueden indicar ubicaciones del campus, comentar, reaccionar, votar, cambiar un voto, guardar y compartir enlaces. Los avisos institucionales se publican desde páginas verificadas.
+• Mensajería y comunidades. Los chats directos y los grupos de estudio permiten enviar texto y adjuntos. Los adjuntos nuevos del chat se descargan con una sesión de integrante. Las comunidades admiten ingreso libre, solicitudes o invitaciones y pueden tener un chat asociado desde su creación.
+• Estados. Las fotos se presentan durante 15 segundos. Los videos pueden durar hasta 120 segundos. El estado deja de estar disponible a las 24 horas. Retirar un estado lo oculta antes de su vencimiento.
+
+ERRORES ENCONTRADOS Y CORREGIDOS
+
+1. El muro, la bandeja y las sugerencias podían mostrar ejemplos inventados en el navegador. Se sustituyeron por consultas a la API. Se prepararon ocho publicaciones y siete comentarios con autoría persistente. Repetir la siembra conserva las ediciones y las retiradas.
+2. El administrador salía del muro hacia un escritorio independiente. Ahora /admin comparte el muro de solo lectura y la navegación con moderación, con opciones adicionales protegidas también en el servidor.
+3. Una página necesitaba verificación para actuar y la selección del compositor mezclaba autorías. La sesión ahora identifica la página activa y comprueba que pertenece al titular. La verificación identifica páginas y habilita los avisos institucionales.
+4. El selector de adjuntos y el servidor aceptaban formatos distintos. Se unificó la carga de fotos, video y PDF con un máximo de 64 MiB por archivo y 30 minutos por video de publicación, se añadió conversión y se corrigió la publicación de una foto sin pie de texto. Un archivo rechazado devuelve un mensaje y permite corregir el envío.
+5. Se bloquean APK, EXE y nombres con extensiones ejecutables intermedias. Las imágenes se decodifican y los videos se inspeccionan antes de normalizarlos. La comprobación del PDF revisa su estructura básica de cabecera y cierre.
+6. El chat mostraba contactos de ejemplo y faltaba la entrada para iniciar una conversación privada. La bandeja utiliza identidades reales, comprueba la membresía y refleja el estado de lectura.
+7. El validador de notificaciones impedía guardar el aviso de contenido reportado. Se añadieron los valores correspondientes al esquema. Los reportes repetidos del mismo caso conservan una sola notificación por moderador.
+8. Se corrigieron identificadores de catálogos en TypeScript, la creación de chats comunitarios con un solo fundador, los filtros de páginas seguidas y el contador ficticio de notificaciones. Se corrigió el desbordamiento horizontal de la interfaz social en móvil.
+9. Tras el inicio de sesión, el menú podía aceptar un clic antes de terminar la redirección. Ahora el menú aparece por primera vez en la ruta definitiva y se preservan los parámetros de los enlaces compartidos.
+
+REFACTORIZACIÓN
+
+La pantalla principal delega el perfil, seguridad de cuenta, directorio de páginas, mensajería, comunidades, estados y gestión administrativa a sus módulos. El muro, los foros y el perfil reutilizan la tarjeta de publicación. Se retiraron el escritorio anterior, su hoja de estilos específica y las colecciones ficticias del frontend. Las rutas administrativas delegan las operaciones de cuentas en un controlador. La carpeta de código del servidor es apps/backend. La carpeta backend de la raíz estaba vacía y Windows la mantenía abierta desde otro proceso.
+
+EVIDENCIA DE QA
+
+• Administración, catálogos, moderación y mensajería. 43 peticiones HTTP en una base temporal con índices y validadores. Se probaron permisos del fundador, altas e inhabilitaciones de carreras, conservación de cuentas, aislamiento de chats, repetición de un envío, lectura, descarga privada, reporte, aviso, ocultación y duración del baneo.
+• Identidades y páginas. 68 peticiones HTTP, incluida autenticación local, cambio de identidad, propiedad, publicaciones y respuestas por perfil, edición, seguimiento, otorgamiento y retiro de verificación, cambio de contraseña e invalidación de sesión.
+• Publicaciones. 65 peticiones HTTP, incluidos permisos de autor, archivos sin texto, votos simultáneos, cambio de voto, preguntas, debates, eventos, enlaces, guardados y paginación.
+• Comunidades. 36 peticiones HTTP sobre solicitudes, aprobación, invitaciones, sincronización de miembros y creación del chat.
+• Multimedia y estados. 29 comprobaciones y subpruebas con archivos y videos reales. Las muestras incluyeron PNG, JPEG, WebP, GIF, TIFF, AVIF, HEIC, BMP, ICO y SVG rasterizado, un PDF, archivos vacíos e incompatibles y nombres peligrosos. El video de 120 segundos se aceptó y el de 121 segundos se rechazó. En una ejecución una muestra de 258.427 bytes pasó a 56.320 bytes. La reducción depende del contenido original.
+• Demostración. Se autenticaron las once cuentas de los TXT contra el servidor local y se leyeron diez publicaciones de esos autores y siete comentarios. Dos de las diez publicaciones ya existían antes de la siembra.
+• Cierre de compilación. Pasaron la comprobación de tipos de TypeScript y la compilación de producción de Next.js y del backend. La batería conjunta registró 33 pruebas aprobadas, ningún fallo y ninguna omisión. Los cuatro módulos funcionales detallados arriba suman 212 peticiones HTTP. Las cifras de peticiones y pruebas describen niveles distintos de la misma ejecución.
+• Chrome en Windows. Cuatro recorridos completados en 30,8 segundos en el último pase. Se comprobaron administración, moderación, estudiante y Bienestar en anchos de 390 y 1440 píxeles. Se verificaron el catálogo administrativo, el cambio de identidad entre cuenta y página incluso tras recargar, una publicación de foto sin texto, la creación y retirada de un estado y, con dos sesiones, el indicador de escritura y la recepción del mensaje. La primera aparición del menú ocurrió en /admin para administración y en /inicio para las demás cuentas.
+• Las pruebas de escritura y suspensión utilizaron bases temporales. En la base de demostración se verificaron credenciales, lectura y autoría.
+
+ACTUALIZACIÓN DE PÁGINAS, FOTOS Y DESPLIEGUE
+
+Bienestar Universitario conserva su cuenta y sus publicaciones. En MongoDB su categoría es Servicio institucional. Administración puede reservar y liberar categorías en Carreras y listas. Las páginas con acceso propio se crean en Páginas desde administración o moderación. Solo administración puede elegir la insignia durante el alta. Estudiantes y docentes abren Páginas para crear y alternar entre varias páginas asociadas a su sesión.
+
+La API comprobó la reserva de categorías, los avisos a dos administradores, la repetición de una solicitud sin duplicar avisos, la resolución concurrente y la modificación y retirada de fotos. En Chrome se subieron y quitaron fotos de perfil desde las cuentas de estudiante y Bienestar. Se publicó una foto con texto y se verificó que el texto seguía encima de la imagen después de recargar. El compositor admite hasta cuatro archivos entre fotos, videos y PDF.
+
+Cada aplicación dispone de su propio archivo railway.toml. La configuración de dominios, secretos, MongoDB y almacenamiento persistente se describe en LEEME.md. Las comprobaciones se realizaron localmente.
+
+PENDIENTES Y MEJORAS PRIORIZADAS
+
+1. Definir con la universidad un plazo de conservación y un proceso de archivo de los binarios vencidos y huérfanos. GridFS conserva los bytes de estados retirados o vencidos. Los nuevos adjuntos de chat tienen control de acceso. Los archivos de publicaciones y los antiguos adjuntos compartidos con rutas públicas pueden abrirse si se conoce su URL.
+2. Antes de un despliegue institucional, sustituir los accesos compartidos de demostración y ensayar recuperación ante pérdida de la base y del directorio de archivos. Validar la integración de Firebase con una cuenta del proveedor. El acceso local sí se probó.
+3. Medir carga con concurrencia representativa de matrícula y eventos, en particular memoria y CPU de la transcodificación. Añadir análisis antimalware de PDF y un servicio de procesamiento en segundo plano con cuotas por cuenta.
+4. Completar pruebas en Safari/iOS y Firefox, con lector de pantalla y redes intermitentes. La prueba visual realizada corresponde a Chrome en Windows con dos anchuras de pantalla.
+5. Para una siguiente versión, tienen sentido la confirmación de asistencia a eventos, recordatorios académicos, ajustes de audiencia para estados y notificaciones push. La ubicación actual representa un lugar del campus indicado por la persona. El alcance universitario deja fuera vinculación por QR, pagos y llamadas.
+
+REFERENCIAS DE DISEÑO
+
+WhatsApp documenta los estados con vigencia de 24 horas y los grupos y eventos dentro de comunidades. Se adoptaron esos patrones y se aplicaron los tiempos de reproducción solicitados por el proyecto.
+https://faq.whatsapp.com/643144237275579/
+https://faq.whatsapp.com/495856382464992/
+Facebook documenta la coordinación de grupos y eventos. Se adaptaron esos usos a foros académicos, páginas institucionales, actividades de campus y chats comunitarios.
+https://about.fb.com/news/2022/10/facebook-communities-summit-2022/
+

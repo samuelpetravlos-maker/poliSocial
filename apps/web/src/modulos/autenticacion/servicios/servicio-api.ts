@@ -1,0 +1,16 @@
+export {
+  CLAVES_ALMACENAMIENTO,
+  PROGRAMAS_CATALOGO,
+  SEDES_CATALOGO,
+  ErrorApi,
+  cambiarContrasenaApi,
+  iniciarSesionLocalApi,
+  listarCatalogosPublicosApi,
+  registrarCuentaLocalApi,
+  verificarSalud,
+  type DatosRegistro,
+  type ElementoCatalogoAdministrativo,
+  type RespuestaSesion,
+  type Sede,
+  type Usuario,
+} from '@/servicios/api-cliente';

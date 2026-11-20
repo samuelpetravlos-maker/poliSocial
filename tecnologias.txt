@@ -1,0 +1,49 @@
+TECNOLOGÍAS DE POLI SOCIAL NETWORK
+==================================
+
+FRONTEND
+--------
+- Next.js 15 (App Router): estructura y ejecución de la aplicación web y sus rutas.
+- React 19: construcción de la interfaz con componentes.
+- TypeScript: tipado y detección de errores en el código del frontend y del backend.
+- TSX / JSX: sintaxis de componentes visuales. No hay archivos .html escritos a mano; Next.js y React generan el HTML a partir de los componentes TSX.
+- CSS: estilos visuales y adaptación de la interfaz.
+
+BACKEND
+-------
+- Node.js: entorno donde se ejecuta la API.
+- Express: servidor HTTP y rutas REST para autenticación, usuarios, publicaciones, chats, comunidades y demás módulos.
+- Socket.IO: comunicación en tiempo real disponible en el backend para chats y notificaciones.
+- CORS: permite configurar las solicitudes entre la web y la API.
+- dotenv: carga la configuración desde el archivo apps/backend/.env.
+- tsx: ejecuta TypeScript durante el desarrollo y reinicia el backend al detectar cambios.
+
+BASE DE DATOS
+-------------
+- MongoDB: base de datos documental que guarda usuarios, publicaciones, chats, comunidades, notificaciones y otros datos.
+- Paquete mongodb (controlador oficial para Node.js): conecta el backend con MongoDB y permite consultar y actualizar colecciones. El proyecto no usa Mongoose.
+- La dirección de MongoDB y el nombre de la base se configuran mediante MONGODB_URI y MONGODB_BASE_DATOS.
+- Los scripts de configuracion/base_datos crean validadores, índices y datos iniciales.
+
+HERRAMIENTAS DE DESARROLLO
+-------------------------
+- npm y npm Workspaces: instalación de dependencias y ejecución de los paquetes web/backend del monorepositorio.
+- TypeScript (tsc): revisión de tipos y compilación del backend.
+
+CONFIGURACIÓN OPCIONAL
+---------------------
+- Firebase: existen variables de configuración y reglas de Storage. La carga de archivos implementada actualmente guarda archivos en el disco del servidor durante el desarrollo; Firebase Storage no es el almacenamiento activo de esos archivos.
+
+PUERTOS LOCALES
+---------------
+- Web Next.js: http://localhost:3000
+- API Express: http://localhost:3001
+- MongoDB local de ejemplo: mongodb://localhost:27017, base de datos polihub
+
+NO INCLUIDO
+-----------
+- No hay una aplicación Android en el árbol actual.
+- No hay archivos HTML independientes; las vistas están en TSX.
+
+Medios y calidad
+Sharp y heic-convert normalizan fotografías. FFprobe mide la duración y FFmpeg comprime videos para la web. MongoDB GridFS almacena estados y adjuntos privados. La página de chat recibe cambios con Socket.IO y vuelve a consultar la API si pierde conexión. Las pruebas utilizan Node.js, MongoDB local y Playwright con Chrome.

@@ -1,0 +1,31 @@
+{
+  "name": "poli-social-network-backend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "tsx watch src/servidor.ts",
+    "build": "tsc -p tsconfig.json",
+    "pruebas": "node --import tsx --test --test-concurrency=1 pruebas/administracion-y-chats.ts pruebas/archivos-y-estados.ts pruebas/comunidades.ts pruebas/identidades-paginas.ts pruebas/publicaciones.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "start": "node dist/servidor.js",
+    "demostracion": "tsx src/scripts/preparar-demostracion.ts",
+    "cuentas:iniciales": "tsx src/scripts/inicializar-cuentas.ts"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "ffmpeg-ffprobe-static": "6.1.2-rc.1",
+    "heic-convert": "2.1.0",
+    "mongodb": "^6.12.0",
+    "sharp": "0.35.5",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

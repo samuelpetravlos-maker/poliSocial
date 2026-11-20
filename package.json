@@ -1,0 +1,15 @@
+{
+  "name": "poli-social-network",
+  "private": true,
+  "workspaces": [
+    "apps/web",
+    "apps/backend"
+  ],
+  "scripts": {
+    "desarrollo:web": "npm run dev --workspace poli-social-network-web",
+    "desarrollo:api": "npm run dev --workspace poli-social-network-backend",
+    "pruebas": "npm run pruebas --workspace poli-social-network-backend",
+    "verificar": "npm run typecheck --workspaces --if-present",
+    "compilar": "npm run build --workspaces --if-present"
+  }
+}

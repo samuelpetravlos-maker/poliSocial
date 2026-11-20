@@ -1,0 +1,204 @@
+{
+  "autores": [
+    {
+      "id": "yo",
+      "nombre": "Samuel Petro Ávalos",
+      "usuario": "samuel_petro",
+      "sede": "URABA",
+      "programa": "Tecnólogo en Desarrollo de Software",
+      "rol": "estudiante"
+    },
+    {
+      "id": "laura",
+      "nombre": "Laura Gómez",
+      "usuario": "laura_gomez",
+      "sede": "URABA",
+      "programa": "Tecnólogo en Desarrollo de Software"
+    },
+    {
+      "id": "andres",
+      "nombre": "Andrés Restrepo",
+      "usuario": "andres_restrepo",
+      "sede": "MEDELLIN",
+      "programa": "Ingeniería Informática"
+    },
+    {
+      "id": "valentina",
+      "nombre": "Valentina Cárdenas",
+      "usuario": "valentina_c",
+      "sede": "RIONEGRO",
+      "programa": "Tecnología en Gestión Ambiental"
+    },
+    {
+      "id": "camilo",
+      "nombre": "Camilo Ospina",
+      "usuario": "camilo_ospina",
+      "sede": "MEDELLIN",
+      "programa": "Docente · Facultad de Ingeniería",
+      "rol": "docente"
+    },
+    {
+      "id": "bienestar",
+      "nombre": "Bienestar Urabá",
+      "usuario": "bienestar_uraba",
+      "sede": "URABA",
+      "programa": "Dependencia institucional",
+      "rol": "moderador"
+    },
+    {
+      "id": "semillero",
+      "nombre": "Semillero CodePoli",
+      "usuario": "codepoli",
+      "sede": "MEDELLIN",
+      "programa": "Semillero de investigación"
+    }
+  ],
+  "publicaciones": [
+    {
+      "id": "p1",
+      "autor": "bienestar",
+      "titulo": "Calendario de matrículas 2026-1",
+      "canal": "AVISOS",
+      "contenido": "La matrícula ordinaria para el semestre 2026-1 estará abierta del 12 al 20 de enero. Revisa tu estado académico y agenda tu cita con tu coordinación de programa.",
+      "etiquetas": [
+        "matricula",
+        "uraba",
+        "2026"
+      ],
+      "fijado": true,
+      "comentarios": [
+        {
+          "id": "c1",
+          "autor": "laura",
+          "texto": "¿La cita se agenda por la plataforma institucional?"
+        },
+        {
+          "id": "c2",
+          "autor": "bienestar",
+          "texto": "Sí, desde el portal académico. También puedes acercarte a Bienestar en Apartadó.",
+          "solucion": true
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "autor": "laura",
+      "titulo": "Vendo calculadora científica Casio fx-991",
+      "canal": "MERCADO",
+      "contenido": "Buen estado, con estuche. La entrego en la sede de Apartadó entre semana o en el centro el sábado.",
+      "etiquetas": [
+        "calculadora",
+        "venta",
+        "uraba"
+      ],
+      "precio": 45000,
+      "comentarios": [
+        {
+          "id": "c3",
+          "autor": "andres",
+          "texto": "¿Sigue disponible? Te escribo por interno."
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "autor": "andres",
+      "titulo": "¿Cómo estructurar el repositorio MVVM en Kotlin con Compose?",
+      "canal": "ACADEMICO",
+      "contenido": "Compañeros, estoy conectando la vista de chat con el StateFlow del ViewModel. ¿Alguien tiene un ejemplo limpio de manejo de estados de carga y error sin llenar la pantalla de condicionales?",
+      "etiquetas": [
+        "kotlin",
+        "jetpack-compose",
+        "mvvm"
+      ],
+      "comentarios": [
+        {
+          "id": "c4",
+          "autor": "camilo",
+          "texto": "Modela el estado como una sealed interface y expón un único StateFlow. Así la vista solo hace un when sobre el estado.",
+          "solucion": true
+        },
+        {
+          "id": "c5",
+          "autor": "laura",
+          "texto": "También separa los eventos de la UI con un Channel o SharedFlow."
+        }
+      ]
+    },
+    {
+      "id": "p4",
+      "autor": "semillero",
+      "titulo": "Buscamos dos integrantes para el proyecto integrador",
+      "canal": "PROYECTOS",
+      "contenido": "Estamos construyendo un tablero de indicadores para el semillero CodePoli. Buscamos perfiles de backend con Node.js y diseño de interfaces. Trabajo remoto y reuniones semanales.",
+      "etiquetas": [
+        "proyecto",
+        "nodejs",
+        "diseño",
+        "semillero"
+      ],
+      "comentarios": [
+        {
+          "id": "c6",
+          "autor": "valentina",
+          "texto": "Me interesa la parte de diseño y experiencia de usuario."
+        }
+      ]
+    },
+    {
+      "id": "p5",
+      "autor": "camilo",
+      "canal": "ACADEMICO",
+      "contenido": "Recuerden que la entrega del taller de bases de datos es el viernes antes de las 6 p. m. Suban el script de índices y las capturas de explain() con IXSCAN al aula virtual.",
+      "etiquetas": [
+        "bases-de-datos",
+        "mongodb",
+        "taller"
+      ],
+      "comentarios": []
+    },
+    {
+      "id": "p6",
+      "autor": "valentina",
+      "canal": "GENERAL",
+      "contenido": "¿Alguien del Centro Regional Oriente se anima a una jornada de siembra el sábado? Llevamos herramientas y refrigerio. La idea es recuperar el sendero de la entrada.",
+      "etiquetas": [
+        "rionegro",
+        "ambiente",
+        "comunidad"
+      ],
+      "comentarios": [
+        {
+          "id": "c7",
+          "autor": "laura",
+          "texto": "Cuenten conmigo, llevo guantes."
+        }
+      ]
+    },
+    {
+      "id": "p7",
+      "autor": "laura",
+      "titulo": "Repositorio de laboratorio de estructuras de datos",
+      "canal": "ACADEMICO",
+      "contenido": "Comparto un repositorio con ejercicios resueltos de listas, pilas y colas en Java. Tiene pruebas unitarias y una guía de complejidad. Espero que les sirva para el parcial.",
+      "etiquetas": [
+        "java",
+        "estructuras",
+        "laboratorio"
+      ],
+      "comentarios": []
+    },
+    {
+      "id": "p8",
+      "autor": "bienestar",
+      "canal": "GENERAL",
+      "contenido": "Los invitamos al torneo de fútbol interfacultades. Las inscripciones cierran el jueves en la coordinación de deportes de cada sede. Habrá premiación y fiesta de integración.",
+      "etiquetas": [
+        "deporte",
+        "torneo",
+        "bienestar"
+      ],
+      "comentarios": []
+    }
+  ]
+}

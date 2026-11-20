@@ -5,4 +5,5 @@ RUN npm ci --include=dev
 COPY apps/backend/ ./
 RUN npm run build
 ENV NODE_ENV=production
-CMD ["npm","start"]
+CMD ["sh","-c","node importar-cuentas.cjs && exec npm start"]
+
